@@ -27,4 +27,6 @@ Route::get('median', function() {
   return view('median', ['numbers' => Numbers::generateArray()]);
 });
 
-
+Route::get('checkMagicalHeader', function() {
+    return view('welcome');
+})->middleware('requireMagicalHeader');
