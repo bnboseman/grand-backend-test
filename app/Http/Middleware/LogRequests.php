@@ -17,8 +17,11 @@ class LogRequests
     public function handle($request, Closure $next)
     {
         DB::table('logs')->insert(
-            ['route' => $request->path(),
-                'magical-header' => $request->headers->has('magical-header')]
+            [
+                'route' => $request->path(),
+                'magical-header' => $request->headers->has('magical-header'),
+                'created_on' => \Carbon\Carbon::now()->toDateTimeString()
+            ]
         );
         return $next($request);
     }
