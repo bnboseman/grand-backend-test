@@ -22,5 +22,4 @@ class LogRequests
         );
         return $next($request);
     }
-
 }

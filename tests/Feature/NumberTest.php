@@ -28,12 +28,11 @@ class NumberTest extends TestCase
                 $this->assertGreaterThan(0, count($numbers));
                 $this->assertLessThan(100, count($numbers));
             }
-
-
         }
     }
 
-    public function testNumberAverage() {
+    public function testNumberAverage()
+    {
         $numbers = [1,2,3,4,5];
         $average = Numbers::average($numbers);
         $this->assertEquals(3, $average);
@@ -43,12 +42,14 @@ class NumberTest extends TestCase
      * @expectedException        Exception
      * @expectedExceptionMessage Array must contain numbers
      */
-    public function testLetterAverage() {
+    public function testLetterAverage()
+    {
         $letters = ['a','b','c'];
         $average = Numbers::average($letters);
     }
 
-    public function testNumberMedian() {
+    public function testNumberMedian()
+    {
         $numbers = [2,1,3,5,4];
         $median = Numbers::median($numbers);
         $this->assertEquals(3, $median);
@@ -62,7 +63,8 @@ class NumberTest extends TestCase
      * @expectedException        Exception
      * @expectedExceptionMessage Array must contain numbers
      */
-    public function testLetterMedian() {
+    public function testLetterMedian()
+    {
         $letters = ['a','b','c'];
         $median = Numbers::median($letters);
     }

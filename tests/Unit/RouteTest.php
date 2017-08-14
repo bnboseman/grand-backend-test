@@ -62,8 +62,8 @@ class RouteTests extends TestCase
      */
     public function testSuccessfulMagicalHeader()
     {
-        $server = array("HTTP_magical-header"=>"42"); 
-        $response = $this->call('GET', '/checkMagicalHeader', [],[],[], $server);
+        $server = array("HTTP_magical-header"=>"42");
+        $response = $this->call('GET', '/checkMagicalHeader', [], [], [], $server);
         $this->assertEquals($response->status(), 200);
     }
 }

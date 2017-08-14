@@ -15,18 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('instructions', function() {
+Route::get('instructions', function () {
     return view('test-instructions');
 });
 
-Route::get('average', function() {
-  return view('average', ['numbers' => Numbers::generateArray()]);
+Route::get('average', function () {
+    return view('average', ['numbers' => Numbers::generateArray()]);
 });
 
-Route::get('median', function() {
-  return view('median', ['numbers' => Numbers::generateArray()]);
+Route::get('median', function () {
+    return view('median', ['numbers' => Numbers::generateArray()]);
 });
 
-Route::get('checkMagicalHeader', function() {
+Route::get('checkMagicalHeader', function () {
     return view('welcome');
 })->middleware('requireMagicalHeader');
