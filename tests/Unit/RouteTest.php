@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use \Illuminate\Http\Response;
 
 class RouteTests extends TestCase
 {
@@ -17,7 +18,7 @@ class RouteTests extends TestCase
     public function testMedian()
     {
         $response = $this->call('GET', '/median');
-        $this->assertEquals($response->status(), 200);
+        $this->assertEquals($response->status(), Response::HTTP_OK);
 
         $content = $response->getOriginalContent();
         $numbers = $content->getData()['numbers'];
@@ -35,7 +36,7 @@ class RouteTests extends TestCase
     public function testAverage()
     {
         $response = $this->call('GET', '/average');
-        $this->assertEquals($response->status(), 200);
+        $this->assertEquals($response->status(), Response::HTTP_OK);
 
         $content = $response->getOriginalContent();
         $numbers = $content->getData()['numbers'];
@@ -52,7 +53,7 @@ class RouteTests extends TestCase
     public function testFailedMagicalHeader()
     {
         $response = $this->call('GET', '/checkMagicalHeader');
-        $this->assertEquals($response->status(), 418);
+        $this->assertEquals($response->status(), Response::HTTP_I_AM_A_TEAPOT);
     }
 
     /**
@@ -64,6 +65,6 @@ class RouteTests extends TestCase
     {
         $server = array("HTTP_magical-header"=>"42");
         $response = $this->call('GET', '/checkMagicalHeader', [], [], [], $server);
-        $this->assertEquals($response->status(), 200);
+        $this->assertEquals($response->status(), Response::HTTP_OK);
     }
 }

@@ -25,17 +25,15 @@ class NumberTest extends TestCase
             $this->assertGreaterThanOrEqual(3, count($numbers));
             $this->assertLessThanOrEqual(10, count($numbers));
             foreach ($numbers as $number) {
-                $this->assertGreaterThan(0, count($numbers));
-                $this->assertLessThan(100, count($numbers));
+                $this->assertGreaterThan(0, $number);
+                $this->assertLessThan(100, $number);
             }
         }
     }
 
     public function testNumberAverage()
     {
-        $numbers = [1,2,3,4,5];
-        $average = Numbers::average($numbers);
-        $this->assertEquals(3, $average);
+        $this->functionTest([1,2,3,4,5], 3, 'average');
     }
 
     /**
@@ -44,19 +42,14 @@ class NumberTest extends TestCase
      */
     public function testLetterAverage()
     {
-        $letters = ['a','b','c'];
-        $average = Numbers::average($letters);
+        $this->functionTest(['a','b','c'], null, 'average');
     }
 
     public function testNumberMedian()
     {
-        $numbers = [2,1,3,5,4];
-        $median = Numbers::median($numbers);
-        $this->assertEquals(3, $median);
-
-        $numbers = [2,1,3,4];
-        $median = Numbers::median($numbers);
-        $this->assertEquals(2.5, $median);
+        // Make it dry
+        $this->functionTest([2,1,3,5,4], 3, 'median');
+        $this->functionTest([2,1,3,4], 2.5, 'median');
     }
 
     /**
@@ -65,7 +58,15 @@ class NumberTest extends TestCase
      */
     public function testLetterMedian()
     {
-        $letters = ['a','b','c'];
-        $median = Numbers::median($letters);
+        $this->functionTest(['a','b','c'], null, 'median');
+    }
+
+    private function functionTest(array $array, $expected, $testFunction)
+    {
+        if (!in_array($testFunction, ['average', 'median'])) {
+            return;
+        }
+        $median = Numbers::$testFunction($array);
+        $this->assertEquals($expected, $median);
     }
 }
